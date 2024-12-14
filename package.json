@@ -10,8 +10,21 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "express": "^4.21.2",
     "nuxt": "^3.14.1592",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "version": "1.0.0",
+  "description": "| Nama                  | NRP        | | --------------------- | ---------- | | Danendra Fidel Khansa | 5027231063 | | Gallant Damas Hayuaji | 5027231037 | | Wira Samudra Siregar  | 5027231041 |",
+  "main": "index.js",
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.10.2",
+    "nodemon": "^3.1.9",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.7.2"
   }
 }
