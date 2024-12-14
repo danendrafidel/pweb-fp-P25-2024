@@ -10,6 +10,7 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxtjs/tailwindcss": "^6.12.2",
     "express": "^4.21.2",
     "nuxt": "^3.14.1592",
     "vue": "latest",
@@ -24,6 +25,7 @@
     "@types/express": "^5.0.0",
     "@types/node": "^22.10.2",
     "nodemon": "^3.1.9",
+    "tailwindcss": "^3.2.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.7.2"
   }
