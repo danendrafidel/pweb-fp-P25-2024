@@ -14,6 +14,7 @@
     "express": "^4.21.2",
     "nuxt": "^3.14.1592",
     "vue": "latest",
+    "vue-datepicker-next": "^1.0.3",
     "vue-router": "latest"
   },
   "version": "1.0.0",
