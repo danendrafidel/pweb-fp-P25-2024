@@ -1,5 +1,5 @@
 <template>
     <div>
-        <nav>ini navbar components</nav>
+        <h1>Ini header components</h1>
     </div>
 </template>
