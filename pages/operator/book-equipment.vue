@@ -96,6 +96,7 @@
 
 <script setup>
 import { ref } from "vue";
+import Notiflix from "notiflix";
 
 const form = ref({
   namaBarang: "",
@@ -106,6 +107,29 @@ const form = ref({
 });
 
 const submitForm = () => {
-  alert("Form berhasil disubmit!");
+  // Validasi contoh (opsional)
+  if (
+    !form.value.namaBarang ||
+    !form.value.jumlahPinjam ||
+    !form.value.tglKembali ||
+    !form.value.namaPeminjam ||
+    !form.value.namaPetugas
+  ) {
+    Notiflix.Notify.failure("Harap isi semua kolom!");
+    return;
+  }
+
+  // Menampilkan notifikasi sukses
+  Notiflix.Notify.success("Form berhasil disubmit!");
+
+  // Reset form (opsional)
+  form.value = {
+    namaBarang: "",
+    jumlahPinjam: "",
+    tglKembali: "",
+    namaPeminjam: "",
+    namaPetugas: "",
+  };
 };
 </script>
+
