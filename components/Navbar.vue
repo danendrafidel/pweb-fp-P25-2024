@@ -1,5 +1,5 @@
 <template>
-    <div>
-        <nav>ini navbar components</nav>
-    </div>
+  <div>
+    <nav>ini navbar components</nav>
+  </div>
 </template>
