@@ -1,5 +1,6 @@
 <template>
     <footer>
-        <p>ini footer components</p>
+      <p>© 2024 Equipment Lending System. All rights reserved.</p>
     </footer>
-</template>
+  </template>
+  

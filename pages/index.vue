@@ -1,16 +1,20 @@
 <template>
   <div>
-    <h1 class="text-center text-3xl font-bold mt-8">Welcome</h1>
-    <p class="text-center text-gray-600 mt-4">
-      This is the main page of our Nuxt.js application.
-    </p>
+    <Navbar :user="user" />
+    <div class="text-center">
+      <h1>Selamat Datang di Website Peminjaman Barang Lab KCKS</h1>
+      <p>Please login to proceed.</p>
+      <router-link to="/login">
+        <button>Login</button>
+      </router-link>
+    </div>
+    <Footer />
   </div>
 </template>
 
-<script setup></script>
+<script setup>
+import Navbar from '~/components/Navbar.vue';
+import Footer from '~/components/Footer.vue';
 
-<style scoped>
-h1 {
-  color: #2c3e50;
-}
-</style>
+const user = null;
+</script>
