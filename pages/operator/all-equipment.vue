@@ -16,7 +16,7 @@
               @click="sort('namaBarang')"
             >
               Nama Barang
-            </th>
+            </th>      
             <th class="border px-4 py-2 text-left text-gray-800">Kondisi</th>
             <th class="border px-4 py-2 text-left text-gray-800">Jumlah</th>
             <th class="border px-4 py-2 text-left text-gray-800">Tanggal Registrasi</th>

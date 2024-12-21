@@ -3,9 +3,87 @@
     <h1 class="font-extrabold text-4xl text-center text-gray-800 mb-8">
       📋 Data Peminjam Barang
     </h1>
-    <div class="bg-gray-100 p-4 rounded-2xl shadow-2xl"
-        style="border-radius: 20px; overflow: hidden;">
-      <table 
+
+    <!-- Dropdown Sort-->
+    <div class="flex justify-between mb-5">
+      <button
+        @click="toggleSortMenu"
+        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
+      >
+        Sort
+      </button>
+      <div v-if="showSortMenu" class="absolute bg-white border rounded-lg shadow-lg mt-12 z-10">
+        <div class="p-4">
+          <p class="font-bold text-gray-700 mb-2">Sort By:</p>
+          <ul>
+            <li
+              v-for="option in sortOptions"
+              :key="option.key"
+              class="cursor-pointer py-1 hover:bg-gray-200 transition-colors duration-200 ease-in-out rounded-lg"
+              @click="setSortKey(option.key)"
+            >
+              <span :class="{'text-blue-500': sortKey === option.key}" class="flex items-center">
+                <!-- Dot Indicator -->
+                <span v-if="sortKey === option.key" class="w-2 h-2 bg-blue-500 rounded-full mr-2"></span>
+                {{ option.label }}
+              </span>
+            </li>
+          </ul>
+          <hr class="my-2 border-gray-300" />
+          <div>
+            <ul class="space-y-2">
+              <li
+                class="cursor-pointer py-1 hover:bg-gray-200 transition-colors duration-200 ease-in-out rounded-lg"
+                @click="setSortOrder('asc')"
+                @mouseenter="showTooltip('Mengurutkan item dengan nilai terkecil di atas.')"
+                @mouseleave="hideTooltip"
+              >
+                <span class="flex items-center">
+                  <span
+                    v-if="sortOrder === 'asc'"
+                    class="w-2 h-2 bg-blue-500 rounded-full mr-2"
+                  ></span>
+                  Ascending
+                </span>
+              </li>
+              <li
+                class="cursor-pointer py-1 hover:bg-gray-200 transition-colors duration-200 ease-in-out rounded-lg"
+                @click="setSortOrder('desc')"
+                @mouseenter="showTooltip('Mengurutkan item dengan nilai terbesar di atas.')"
+                @mouseleave="hideTooltip"
+              >
+                <span class="flex items-center">
+                  <span
+                    v-if="sortOrder === 'desc'"
+                    class="w-2 h-2 bg-blue-500 rounded-full mr-2"
+                  ></span>
+                  Descending
+                </span>
+              </li>
+            </ul>
+          </div>
+          <button
+            @click="applySort"
+            class="bg-blue-600 text-white mt-2 py-2 px-6 rounded-full shadow-lg transform transition-all duration-500 ease-in-out hover:bg-blue-800 hover:scale-110 hover:ring-4 hover:ring-blue-500 hover:ring-opacity-50 focus:outline-none focus:ring-4 focus:ring-blue-500 focus:ring-opacity-50"
+          >
+            Apply
+          </button>
+        </div>
+      </div>
+    </div>
+
+  <!-- Tooltip for Ascending and Descending -->
+    <div
+      v-if="tooltip"
+      class="absolute bg-gray-500 text-white p-2 rounded-lg text-sm mt-1 z-20 transition-opacity duration-500 opacity-0 shadow-lg"
+      :class="{'opacity-100': tooltipVisible}"
+    >
+      {{ tooltip }}
+    </div>
+
+    <!-- Tabel -->
+    <div class="bg-gray-100 p-4 rounded-2xl shadow-2xl" style="border-radius: 20px; overflow: hidden;">
+      <table
         class="table-auto w-full border-collapse border border-gray-200 overflow-hidden"
         style="border-radius: 16px; overflow: hidden;">
         <thead>
@@ -21,7 +99,7 @@
         </thead>
         <tbody>
           <tr
-            v-for="(peminjam, index) in peminjamList"
+            v-for="(peminjam, index) in sortedPeminjamList"
             :key="index"
             class="hover:bg-blue-50 transition-colors"
           >
@@ -40,8 +118,9 @@
 </template>
 
 <script setup>
-import { ref } from "vue";
+import { ref, computed } from "vue";
 
+// Data peminjam
 const peminjamList = ref([
   {
     namaBarang: "Laptop",
@@ -60,4 +139,65 @@ const peminjamList = ref([
     petugas: "Bob",
   },
 ]);
+
+// Sort state
+const showSortMenu = ref(false);
+const sortKey = ref("");
+const sortOrder = ref("asc");
+
+// Opsi sorting
+const sortOptions = [
+  { key: "namaBarang", label: "Nama Barang" },
+  { key: "jumlahPinjam", label: "Jumlah Pinjam" },
+  { key: "tglPinjam", label: "Tgl. Pinjam" },
+  { key: "tglKembali", label: "Tgl. Kembali" },
+  { key: "peminjam", label: "Peminjam" },
+];
+
+const tooltip = ref("");
+const tooltipVisible = ref(false);
+let tooltipTimeout;
+
+// Fungsi untuk membuka/tutup menu
+const toggleSortMenu = () => {
+  showSortMenu.value = !showSortMenu.value;
+};
+
+// Fungsi untuk memilih key sort
+const setSortKey = (key) => {
+  sortKey.value = key;
+};
+
+// Fungsi untuk memilih order sort
+const setSortOrder = (order) => {
+  sortOrder.value = order;
+};
+
+// Fungsi untuk apply sorting
+const applySort = () => {
+  showSortMenu.value = false; // Tutup menu setelah apply
+};
+
+const showTooltip = (text) => {
+  tooltipTimeout = setTimeout(() => {
+    tooltip.value = text;
+    tooltipVisible.value = true;
+  }, 800);
+};
+
+const hideTooltip = () => {
+  clearTimeout(tooltipTimeout);
+  tooltipVisible.value = false;
+};
+
+// Data yang sudah disortir
+const sortedPeminjamList = computed(() => {
+  if (!sortKey.value) return peminjamList.value;
+  return [...peminjamList.value].sort((a, b) => {
+    const order = sortOrder.value === "asc" ? 1 : -1;
+    if (a[sortKey.value] < b[sortKey.value]) return -1 * order;
+    if (a[sortKey.value] > b[sortKey.value]) return 1 * order;
+    return 0;
+  });
+});
 </script>
