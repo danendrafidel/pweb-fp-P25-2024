@@ -92,7 +92,7 @@ onMounted(fetchItemsAndSum);
           </tbody>
         </table>
       </div>
-      <Footer/>
+      <Footer />
     </div>
   </main>
 </template>

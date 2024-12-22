@@ -10,7 +10,7 @@ const errorMessage = ref("");
 const amount = ref("");
 const selectedBarang = ref("");
 const return_date = ref("");
-const borrower_name = ref("")
+const borrower_name = ref("");
 const officer_name = ref(localStorage.getItem("username"));
 
 onMounted(getAllItems);
@@ -31,7 +31,12 @@ async function getAllItems() {
 
 async function handleFormSubmit() {
   errorMessage.value = "";
-  if (!amount.value || !borrower_name.value || !selectedBarang.value || !return_date.value) {
+  if (
+    !amount.value ||
+    !borrower_name.value ||
+    !selectedBarang.value ||
+    !return_date.value
+  ) {
     errorMessage.value = "Please fill in all fields.";
     return;
   }
@@ -48,7 +53,7 @@ async function handleFormSubmit() {
     amount: amount.value,
     return_date: return_date.value,
     borrower_name: borrower_name.value,
-    officer_name: officer_name.value
+    officer_name: officer_name.value,
   };
 
   try {
@@ -63,11 +68,10 @@ async function handleFormSubmit() {
     amount.value = "";
     selectedBarang.value = "";
     return_date.value = "";
-    borrower_name.value = ""
-
+    borrower_name.value = "";
   } catch (error) {
-    if(!error.response.data["message"]){
-        errorMessage.value = "An error occurred while adding the data.";
+    if (!error.response.data["message"]) {
+      errorMessage.value = "An error occurred while adding the data.";
     }
     errorMessage.value = error.response.data["message"];
   }
