@@ -1,0 +1,26 @@
+[
+    {
+        "item_id": { "$oid": "676761f3ff6fad579f1083e1" },
+        "amount": "3",
+        "borrow_date": { "$date": "2024-12-19T10:36:45.000Z" },
+        "return_date": { "$date": "2024-12-20T10:36:45.000Z" },
+        "borrower_name": "Budi Nugroho",
+        "officer_name": "operator"
+    },
+    {
+        "item_id": { "$oid": "676761f3ff6fad579f1083e2" },
+        "amount": "1",
+        "borrow_date": { "$date": "2024-12-09T10:00:45.000Z" },
+        "return_date": { "$date": "2024-12-21T10:36:45.000Z" },
+        "borrower_name": "Satria Kalifa",
+        "officer_name": "operator"
+    },
+    {
+        "item_id": { "$oid": "676761f3ff6fad579f1083e2" },
+        "amount": "2",
+        "borrow_date": { "$date": "2024-12-10T13:00:45.000Z" },
+        "return_date": { "$date": "2024-12-21T10:36:50.000Z" },
+        "borrower_name": "Muhammad Lutfi",
+        "officer_name": "operator"
+    }
+]

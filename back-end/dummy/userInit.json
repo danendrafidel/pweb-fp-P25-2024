@@ -1,0 +1,17 @@
+[
+    {
+        "username": "admin",
+        "password": "admin123",
+        "role": "admin"
+    },
+    {
+        "username": "operator",
+        "password": "operator123",
+        "role": "operator"
+    },
+    {
+        "username": "budi_nugroho1",
+        "password": "budibaik123",
+        "role":"admin"
+    }
+]

@@ -1,0 +1,17 @@
+[
+  {"name": "Rice Cooker", "amount": "2", "condition": "Baik", "created_at": {"$date": "2024-12-17T10:36:45.000Z"}},
+  {"name": "Oven", "amount": "2", "condition": "Baik", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Kursi", "amount": "8", "condition": "Rusak", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Komputer", "amount": "9", "condition": "Baik", "created_at": {"$date": "2024-12-18T10:36:45.000Z"}},
+  {"name": "Stapler", "amount": "12", "condition": "Baik", "created_at": {"$date": "2024-12-17T10:36:45.000Z"}},
+  {"name": "Keyboard", "amount": "7", "condition": "Baik", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Buku", "amount": "5", "condition": "Rusak", "created_at": {"$date": "2024-12-19T10:36:45.000Z"}},
+  {"name": "Penggaris", "amount": "1", "condition": "Rusak", "created_at": {"$date": "2024-12-13T10:36:45.000Z"}},
+  {"name": "Backpack", "amount": "2", "condition": "Rusak", "created_at": {"$date": "2024-12-18T10:36:45.000Z"}},
+  {"name": "Meja", "amount": "4", "condition": "Baik", "created_at": {"$date": "2024-12-19T10:36:45.000Z"}},
+  {"name": "Pensil", "amount": "10", "condition": "Baik", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Arloji", "amount": "3", "condition": "Rusak", "created_at": {"$date": "2024-12-20T10:36:45.000Z"}},
+  {"name": "Mouse", "amount": "5", "condition": "Baik", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Kacamata", "amount": "10", "condition": "Baik", "created_at": {"$date": "2024-12-15T10:36:45.000Z"}},
+  {"name": "Clipboard", "amount": "12", "condition": "Baik", "created_at": {"$date": "2024-12-19T10:36:45.000Z"}}
+]
