@@ -105,13 +105,11 @@ onMounted(fetchItemsAndSum);
 </template>
 
 <style scoped>
-/* Animasi untuk efek hover pada tabel */
 tr:hover {
   transform: translateY(-5px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-/* Efek gradasi pada judul */
 h1 {
   font-size: 2.5rem;
   text-align: center;
@@ -124,7 +122,6 @@ h1:hover {
   transform: scale(1.1);
 }
 
-/* Desain border dan padding untuk tabel */
 table th,
 table td {
   padding: 1rem;
@@ -132,7 +129,6 @@ table td {
   border: 1px solid #e5e7eb;
 }
 
-/* Mengatur lebar tabel dan responsif */
 table {
   width: 100%;
   border-collapse: collapse;
