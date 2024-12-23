@@ -46,6 +46,8 @@ import { ref } from "vue";
 const items = ref([
   { namaBarang: "Laptop", kondisi: "Baik", jumlah: 10, tanggalRegistrasi: "2024-12-01" },
   { namaBarang: "Proyektor", kondisi: "Rusak", jumlah: 3, tanggalRegistrasi: "2024-12-05" },
+  { namaBarang: "Kursi", kondisi: "Baik", jumlah: 15, tanggalRegistrasi: "2024-11-04" },
+  { namaBarang: "Meja", kondisi: "Baik", jumlah: 20, tanggalRegistrasi: "2024-10-03" },
 ]);
 
 const sortBy = ref("");

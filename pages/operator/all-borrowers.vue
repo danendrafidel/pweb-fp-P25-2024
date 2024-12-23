@@ -151,6 +151,14 @@ const peminjamList = ref([
     peminjam: "Alice",
     petugas: "Bob",
   },
+  {
+    namaBarang: "Proyektor",
+    jumlahPinjam: 1,
+    tglPinjam: "2024-12-08",
+    tglKembali: "2024-12-14",
+    peminjam: "Eko",
+    petugas: "Bob",
+  },
 ]);
 
 // Sort state
