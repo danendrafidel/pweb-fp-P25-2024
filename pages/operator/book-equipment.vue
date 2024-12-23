@@ -96,6 +96,7 @@
 
 <script setup>
 import { ref } from "vue";
+import axios from "axios";
 import Notiflix from "notiflix";
 
 const form = ref({
@@ -106,7 +107,7 @@ const form = ref({
   namaPetugas: "",
 });
 
-const submitForm = () => {
+const submitForm = async () => {
   // Validasi contoh (opsional)
   if (
     !form.value.namaBarang ||
@@ -119,17 +120,32 @@ const submitForm = () => {
     return;
   }
 
-  // Menampilkan notifikasi sukses
-  Notiflix.Notify.success("Form berhasil disubmit!");
+  try {
+    // Mengirim data ke backend
+    const response = await axios.post("/api/borrow-items/borrow", {
+      borrowerName: form.value.namaPeminjam,
+      itemName: form.value.namaBarang,
+      quantity: parseInt(form.value.jumlahPinjam),
+      returnDate: form.value.tglKembali,
+      officerName: form.value.namaPetugas,
+    });
 
-  // Reset form (opsional)
-  form.value = {
-    namaBarang: "",
-    jumlahPinjam: "",
-    tglKembali: "",
-    namaPeminjam: "",
-    namaPetugas: "",
-  };
+    // Menampilkan notifikasi sukses
+    Notiflix.Notify.success(response.data.message || "Peminjaman berhasil!");
+
+    // Reset form
+    form.value = {
+      namaBarang: "",
+      jumlahPinjam: "",
+      tglKembali: "",
+      namaPeminjam: "",
+      namaPetugas: "",
+    };
+  } catch (error) {
+    // Menampilkan notifikasi error
+    const message =
+      error.response?.data?.message || "Terjadi kesalahan, coba lagi!";
+    Notiflix.Notify.failure(message);
+  }
 };
 </script>
-

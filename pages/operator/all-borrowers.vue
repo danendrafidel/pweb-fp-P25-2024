@@ -7,10 +7,20 @@
     <!-- Dropdown Sort-->
     <div class="flex justify-between mb-5">
       <button
-        @click="toggleSortMenu"
-        class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none"
-      >
-        Sort
+          @click="toggleSortMenu"
+          class="bg-blue-500 text-white px-4 py-2 rounded-lg shadow-md hover:bg-blue-600 focus:outline-none flex items-center"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 320 512"
+            class="w-4 h-4 mr-2"
+          >
+            <path
+              d="M137.4 41.4c12.5-12.5 32.8-12.5 45.3 0l128 128c9.2 9.2 11.9 22.9 6.9 34.9s-16.6 19.8-29.6 19.8L32 224c-12.9 0-24.6-7.8-29.6-19.8s-2.2-25.7 6.9-34.9l128-128zm0 429.3l-128-128c-9.2-9.2-11.9-22.9-6.9-34.9s16.6-19.8 29.6-19.8l256 0c12.9 0 24.6 7.8 29.6 19.8s2.2 25.7-6.9 34.9l-128 128c-12.5 12.5-32.8 12.5-45.3 0z"
+              :class="sortOrder === 'asc' ? 'fill-blue-200' : 'fill-gray-200'"
+            />
+          </svg>
+          Sort
       </button>
       <div v-if="showSortMenu" class="absolute bg-white border rounded-lg shadow-lg mt-12 z-10">
         <div class="p-4">
@@ -118,7 +128,10 @@
 </template>
 
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, onMounted } from "vue";
+import { useRoute } from "vue-router";
+
+const route = useRoute();
 
 // Data peminjam
 const peminjamList = ref([
@@ -200,4 +213,19 @@ const sortedPeminjamList = computed(() => {
     return 0;
   });
 });
+
+onMounted(() => {
+  const newPeminjam = route.query;
+  if (newPeminjam && newPeminjam.namaBarang) {
+    peminjamList.value.push({
+      namaBarang: newPeminjam.namaBarang,
+      jumlahPinjam: newPeminjam.jumlahPinjam,
+      tglPinjam: newPeminjam.tglPinjam,
+      tglKembali: newPeminjam.tglKembali,
+      peminjam: newPeminjam.peminjam,
+      petugas: newPeminjam.petugas,
+    });
+  }
+});
+
 </script>

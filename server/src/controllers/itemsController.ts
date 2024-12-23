@@ -1,13 +1,13 @@
 import { Request, Response } from "express";
 
-interface Item {
+export interface Item {
   id: number;
   name: string;
   description: string;
   quantity: number;
 }
 
-const items: Item[] = [];
+export const items: Item[] = [];
 
 export const addItem = (req: Request, res: Response) => {
   const { name, description, quantity } = req.body;
